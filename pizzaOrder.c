@@ -1,101 +1,58 @@
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-int main()
-{
-    // int a,b;
-    int choice;
-    printf("enter choice(1-2):");
-    scanf("%d", &choice);
-    switch(choice)
-    {
-    case 1:
-        printf("chicken pizza ready\n");
-        printf("do you want any extra material\n");
-        int ch3;
-        printf("enter 1 for YES and 2 for NO\n");
-        scanf("%d",&ch3);
-        switch(ch3)
-        {
+
+void printMenu(const char *pizzaType) {
+    printf("%s Pizza Menu:\n", pizzaType);
+    printf("1. Only %s Pizza\n", pizzaType);
+    printf("2. %s Pizza with extra toppings\n", pizzaType);
+    printf("3. %s Pizza with extra chilli\n", pizzaType);
+    printf("4. %s Pizza with extra pepper\n", pizzaType);
+    printf("5. %s Pizza with french fries\n", pizzaType);
+}
+
+void printChoice(int extraChoice, const char *pizzaType) {
+    switch (extraChoice) {
         case 1:
-            printf("enter extra item to be put on pizza\n");
-            printf("1.only chicken pizza\n");
-            printf("2.chicken pizzza with extra toppings\n");
-            printf("3.chicken pizzza with extra chilli\n");
-            printf("4.chicken pizzza with extra pepper\n");
-            printf("5.chicken pizzza with french fries\n");
-            int choice1;
-            printf("enter choice(1-5)\n");
-            scanf("%d", &choice1);
-            switch(choice1)
-            {
-            case 1:
-                printf("only chicken pizza");
-            case 2:
-                printf("2..chicken pizzza with extra toppings\n");
-                break;
-            case 3:
-                printf("3.chicken pizzza with extra chilli\n");
-                break;
-            case 4:
-                printf("4.chicken pizzza with extra pepper\n");
-                break;
-            case 5:
-                printf("5.chicken pizzza with french fries\n");
-                break;
-            default:
-                printf("enter from above choice\n");
-            }
+            printf("Only %s Pizza is ready\n", pizzaType);
+            break;
         case 2:
-            printf("plane chicken pizza\n");
+            printf("%s Pizza with extra toppings is ready\n", pizzaType);
+            break;
+        case 3:
+            printf("%s Pizza with extra chilli is ready\n", pizzaType);
+            break;
+        case 4:
+            printf("%s Pizza with extra pepper is ready\n", pizzaType);
+            break;
+        case 5:
+            printf("%s Pizza with french fries is ready\n", pizzaType);
             break;
         default:
-            printf("select from above\n");
-        }
-    case 2:
-        printf("cheese pizza ready\n");
-        printf("do you want any extra material\n");
-        int ch4;
-        printf("enter 1 for YES and 2 for NO\n");
-        scanf("%d",&ch4);
-        switch(ch4)
-        {
+            printf("Invalid choice for %s Pizza. Please choose from 1 to 5\n", pizzaType);
+    }
+}
+
+int main() {
+    int pizzaChoice, extraChoice;
+
+    printf("1. Chicken Pizza\n");
+    printf("2. Cheese Pizza\n");
+    printf("Enter choice (1-2) and extra choice (1-5) separated by space: ");
+    scanf("%d %d", &pizzaChoice, &extraChoice);
+
+    switch (pizzaChoice) {
         case 1:
-            printf("enter extra item to be put on pizza\n");
-            printf("1.only chicken pizza\n");
-            printf("2.cheese pizzza with extra toppings\n");
-            printf("3.cheese pizzza with extra chilli\n");
-            printf("4.cheese pizzza with extra pepper\n");
-            printf("5.cheese pizzza with french fries\n");
-            int choice1;
-            printf("enter choice(1-5)\n");
-            scanf("%d", &choice1);
-            switch(choice1)
-            {
-            case 1:
-                printf("only cheese pizza");
-            case 2:
-                printf("cheese pizzza with extra toppings\n");
-                break;
-            case 3:
-                printf("cheese pizzza with extra chilli\n");
-                break;
-            case 4:
-                printf("cheese pizzza with extra pepper\n");
-                break;
-            case 5:
-                printf("cheese pizzza with french fries\n");
-                break;
-            default:
-                printf("enter from above choice\n");
-                break;
-            }
-        case 2:
-            printf("plane cheese pizza ready\n");
+            printMenu("Chicken");
+            printChoice(extraChoice, "Chicken");
             break;
-         default:
-            printf("select from above\n");
-        }
-    }   
-      return 0;
+
+        case 2:
+            printMenu("Cheese");
+            printChoice(extraChoice, "Cheese");
+            break;
+
+        default:
+            printf("Invalid choice for pizza type. Please choose 1 for Chicken Pizza or 2 for Cheese Pizza\n");
+    }
+
+    return 0;
 }
