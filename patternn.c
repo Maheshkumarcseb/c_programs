@@ -240,33 +240,47 @@
 
 
 
+#include <stdio.h>
 
+int main() {
+    int n = 3; // Size of the matrix (3x3)
+    int arr[3][3];
+    int num = 1;
+    int left = 0, right = n - 1, top = 0, bottom = n - 1;
 
-#include<stdio.h>           
-int main()
-{
-    int i,j,k,n;
-    printf("enter the value of n:");
-    scanf("%d",&n);                                         
-    for(i=0;i<n;i++)
-    {
-    //                             * 
-    //                            * *
-    //                           * * *
-    //                          * * * *
-    //                         * * * * *
-        for(j=0;j<n-1-i;j++)
-        {  
-            if(i==n-1 && j==n-1 )
-            printf(" ");
-           printf(" ");
-           
+    while (num <= n * n) {
+        // Fill from left to right
+        for (int i = left; i <= right; i++) {
+            arr[top][i] = num++;
         }
-        for(k=j;k<n;k++)
-        {
-            printf("%c ");
+        top++;
+
+        // Fill from top to bottom
+        for (int i = top; i <= bottom; i++) {
+            arr[i][right] = num++;
+        }
+        right--;
+
+        // Fill from right to left
+        for (int i = right; i >= left; i--) {
+            arr[bottom][i] = num++;
+        }
+        bottom--;
+
+        // Fill from bottom to top
+        for (int i = bottom; i >= top; i--) {
+            arr[i][left] = num++;
+        }
+        left++;
+    }
+
+    // Print the matrix in reverse row order
+    for (int i = n - 1; i >= 0; i--) {
+        for (int j = 0; j < n; j++) {
+            printf("%d ", arr[i][j]);
         }
         printf("\n");
     }
+
     return 0;
 }
